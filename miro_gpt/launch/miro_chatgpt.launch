@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="miro_gpt" type="blinking.py" name="blink" output="screen"/>
+    <node pkg="miro_gpt" type="process_audio.py" name="process_audio" output="screen"/>
+
+</launch>

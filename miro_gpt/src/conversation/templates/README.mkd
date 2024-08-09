@@ -1,0 +1,35 @@
+# Base Conversations
+
+Conversations are expected to be in a JSON file with the following format:
+```json
+[
+    {
+        "role": "<role>",
+        "content": "<content>"
+    },
+    ...
+]
+```
+
+### Using Variables in Conversation
+
+Variables that may change at runtime and are independent of the convesation can be set using the python format string notation of `{var_name}`. An example JSON, unrelated to your home description is available under the key `smart_home_data_example` and your description of your home is loaded under the name `smart_home_data`. Any other variables should be manually named and set in the `model_configs/<config_file>.yaml` under the `conversation_vars` key.
+
+```yaml
+# Model Config File
+conversation_vars:
+    my_name: lovey
+```
+
+```json
+// Conversation File
+"content": "My name is {my_name} and here is a JSON description of my house: {smart_home_data}"
+```
+
+# Using String JSON in Conversation
+
+To use in text JSON in your conversations, you must escape the content using two sets of brackets `{{<your json>}}`. This will resolve to a single pair of brackets after being loaded.
+
+```json
+"content": "Representing some JSON: {{\"key\": \"value\"}} with a variable {var_name}"
+```
